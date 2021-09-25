@@ -1,1 +1,10 @@
+@author  MH_TEALEB
+@date    08 Dec. 2016 07:28:56 م
 
+@brief This file contains a project of LED Blinking using ATmega32A AVR Micro-Controller and two leds.
+
+@Description:-
+.................
+* There are 2 leds. 
+  * The first led is connecting to pin 7 in port B and this led at the bigging will be ON for 2 seconds then it will be OFF.
+  * The second led is connecting to pin 0 in port B, After the first led getting OFF this led will be blinking(will be ON for 1 second then OFF for 1 second then repeat again).
