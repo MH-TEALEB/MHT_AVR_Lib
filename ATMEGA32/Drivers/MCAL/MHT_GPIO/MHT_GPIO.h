@@ -1,4 +1,4 @@
-/*
+﻿/*
  * @file MHT_GPIO.h
  * @brief Header File for General Purpose Input Output(GPIO) driver.
  *
@@ -34,23 +34,23 @@
 #define ZERO	0
 #define ONE		1
 
-// Define Direction of Ports to use when calling macro function(to replace DIR_PORT_NAME).
-#define DA	DDRA
-#define DB	DDRB
-#define DC	DDRC
-#define DD	DDRD
-
 // Define Ports to use when calling macro function(to replace PORT_NAME).
 #define PA	PORTA
 #define PB	PORTB
 #define PC	PORTC
 #define PD	PORTD
 
+// Define Direction of Ports to use when calling macro function(to replace DIR_PORT_NAME).
+#define DPA	DDRA
+#define DPB	DDRB
+#define DPC	DDRC
+#define DPD	DDRD
+
 // Define Ports to use in Read Macro Functions(to replace READ_PORT_NAME).
-#define RA	PINA
-#define RB	PINB
-#define RC	PINC
-#define RD	PIND
+#define RPA	PINA
+#define RPB	PINB
+#define RPC	PINC
+#define RPD	PIND
 
 
 /**************************************************************************************************************************************
@@ -178,19 +178,19 @@ s8 MHT_GPIO_Pin_Read_Value(u8 port_name, u8 pin_num);
 **************************************************************************************************************************************/
 
 /************************************** For General use(send the desired value from 0 to 255) ****************************************/
-// To define direction for pins in port.
+// To define direction for pins in port. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PINS_DIRECTION_DEFINE(DIR_PORT_NAME, pins_dir)	(DIR_PORT_NAME = pins_dir)
 #define MHT_GPIO_PINSA_DIRECTION_DEFINE(pins_dir)	(DDRA = pins_dir)
 #define MHT_GPIO_PINSB_DIRECTION_DEFINE(pins_dir)	(DDRB = pins_dir)
 #define MHT_GPIO_PINSC_DIRECTION_DEFINE(pins_dir)	(DDRC = pins_dir)
 #define MHT_GPIO_PINSD_DIRECTION_DEFINE(pins_dir)	(DDRD = pins_dir)
-// To Output Value to the pins in port.
+// To Output Value to the pins in port.	(PORT_NAME can be PA or PB or PC or PD)
 #define MHT_GPIO_PINS_OUTPUT_VALUE(PORT_NAME, value)	(PORT_NAME = value)
 #define MHT_GPIO_PINSA_OUTPUT_VALUE(value)	(PORTA = value)
 #define MHT_GPIO_PINSB_OUTPUT_VALUE(value)	(PORTB = value)
 #define MHT_GPIO_PINSC_OUTPUT_VALUE(value)	(PORTC = value)
 #define MHT_GPIO_PINSD_OUTPUT_VALUE(value)	(PORTD = value)
-// To Read Value of Pins in port.
+// To Read Value of Pins in port. (READ_PORT_NAME can be RPA or RPB or RPC or RPD)
 #define MHT_GPIO_PINS_READ_VALUE(READ_PORT_NAME) (READ_PORT_NAME)
 #define MHT_GPIO_PINSA_READ_VALUE()	(PINA)
 #define MHT_GPIO_PINSB_READ_VALUE()	(PINB)
@@ -198,65 +198,65 @@ s8 MHT_GPIO_Pin_Read_Value(u8 port_name, u8 pin_num);
 #define MHT_GPIO_PINSD_READ_VALUE()	(PIND)
 
 /***************************************************** For Input use *****************************************************************/
-// Define Port Direction as Input.
+// Define Port Direction as Input. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PORT_DIRECTION_INPUT(DIR_PORT_NAME)	(DIR_PORT_NAME = 0X00)
 #define MHT_GPIO_PORTA_DIRECTION_INPUT()	(DDRA = 0X00)
 #define MHT_GPIO_PORTB_DIRECTION_INPUT()	(DDRB = 0X00)
 #define MHT_GPIO_PORTC_DIRECTION_INPUT()	(DDRC = 0X00)
 #define MHT_GPIO_PORTD_DIRECTION_INPUT()	(DDRD = 0X00)
-// Define pin Direction as Input.
+// Define pin Direction as Input. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PIN_DIRECTION_INPUT(DIR_PORT_NAME, pin_num)	(DIR_PORT_NAME &= ~(1 << pin_num) )
-// To Read Value of pin in port.
+// To Read Value of pin in port. (READ_PORT_NAME can be RPA or RPB or RPC or RPD).
 #define MHT_GPIO_PIN_READ_VALUE(READ_PORT_NAME, pin_num)	( (READ_PORT_NAME >> pin_num) & 0X01)
 
 /***************************************************** For Output use ****************************************************************/
-// Define Port Direction as Output.
+// Define Port Direction as Output. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PORT_DIRECTION_OUTPUT(DIR_PORT_NAME)	(DIR_PORT_NAME = 0XFF)
 #define MHT_GPIO_PORTA_DIRECTION_OUTPUT()	(DDRA = 0XFF)
 #define MHT_GPIO_PORTB_DIRECTION_OUTPUT()	(DDRB = 0XFF)
 #define MHT_GPIO_PORTC_DIRECTION_OUTPUT()	(DDRC = 0XFF)
 #define MHT_GPIO_PORTD_DIRECTION_OUTPUT()	(DDRD = 0XFF)
-// Define pin Direction as Output.
+// Define pin Direction as Output. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PIN_DIRECTION_OUTPUT(DIR_PORT_NAME, pin_num)	(DIR_PORT_NAME |= (1 << pin_num) )
-// To Output Value to Port.
+// To Output Value to Port. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PORT_OUTPUT_VALUE(PORT_NAME, value)	(PORT_NAME = value)
 #define MHT_GPIO_PORTA_OUTPUT_VALUE(value)	(PORTA = value)
 #define MHT_GPIO_PORTB_OUTPUT_VALUE(value)	(PORTB = value)
 #define MHT_GPIO_PORTC_OUTPUT_VALUE(value)	(PORTC = value)
 #define MHT_GPIO_PORTD_OUTPUT_VALUE(value)	(PORTD = value)
-// To Output 1 to the port.
+// To Output 1 to the port. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PORT_OUTPUT_ONE(PORT_NAME)	(PORT_NAME = 0XFF)
 #define MHT_GPIO_PORTA_OUTPUT_ONE()	(PORTA = 0XFF)
 #define MHT_GPIO_PORTB_OUTPUT_ONE()	(PORTB = 0XFF)
 #define MHT_GPIO_PORTC_OUTPUT_ONE()	(PORTC = 0XFF)
 #define MHT_GPIO_PORTD_OUTPUT_ONE()	(PORTD = 0XFF)
-// To Output 1 to pin.
+// To Output 1 to pin. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PIN_OUTPUT_ONE(PORT_NAME, pin_num)	( PORT_NAME |= (1 << pin_num) )
-// To Output 0 to the port.
+// To Output 0 to the port. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PORT_OUTPUT_ZERO(PORT_NAME)	(PORT_NAME = 0X00)
 #define MHT_GPIO_PORTA_OUTPUT_ZERO()	(PORTA = 0X00)
 #define MHT_GPIO_PORTB_OUTPUT_ZERO()	(PORTB = 0X00)
 #define MHT_GPIO_PORTC_OUTPUT_ZERO()	(PORTC = 0X00)
 #define MHT_GPIO_PORTD_OUTPUT_ZERO()	(PORTD = 0X00)
-// To Output 0 to pin.
+// To Output 0 to pin. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PIN_OUTPUT_ZERO(PORT_NAME, pin_num)	( PORT_NAME &= ~(1 << pin_num) )
 
 /*************************************************************** For Toggle use ******************************************************/
-// Define port Direction as Toggle. (To Toggle Port Direction).
+// To Toggle Port Direction. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PORT_DIRECTION_TOGGLE(DIR_PORT_NAME)	(DIR_PORT_NAME ^= 0XFF)
 #define MHT_GPIO_PORTA_DIRECTION_TOGGLE()	(DDRA ^= 0XFF)
 #define MHT_GPIO_PORTB_DIRECTION_TOGGLE()	(DDRB ^= 0XFF)
 #define MHT_GPIO_PORTC_DIRECTION_TOGGLE()	(DDRC ^= 0XFF)
 #define MHT_GPIO_PORTD_DIRECTION_TOGGLE()	(DDRD ^= 0XFF)
-// Define pin Direction as Toggle. (To Toggle Pin Direction).
+// To Toggle Pin Direction. (DIR_PORT_NAME can be DPA or DPB or DPC or DPD).
 #define MHT_GPIO_PIN_DIRECTION_TOGGLE(DIR_PORT_NAME, pin_num)	(DIR_PORT_NAME ^= (1 << pin_num) )
-// To Toggle the port.
+// To Toggle the port. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PORT_OUTPUT_TOGGLE(PORT_NAME)	(PORT_NAME ^= 0XFF)
 #define MHT_GPIO_PORTA_OUTPUT_TOGGLE()	(PORTA ^= 0XFF)
 #define MHT_GPIO_PORTB_OUTPUT_TOGGLE()	(PORTB ^= 0XFF)
 #define MHT_GPIO_PORTC_OUTPUT_TOGGLE()	(PORTC ^= 0XFF)
 #define MHT_GPIO_PORTD_OUTPUT_TOGGLE()	(PORTD ^= 0XFF)
-// To Toggle value of pin in a port.
+// To Toggle value of pin in a port. (PORT_NAME can be PA or PB or PC or PD).
 #define MHT_GPIO_PIN_OUTPUT_TOGGLE(PORT_NAME, pin_num)	( PORT_NAME ^= (1 << pin_num) )
 
 #endif // END of MHT_GPIO_H_
